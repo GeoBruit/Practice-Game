@@ -33,7 +33,7 @@ class Character:
             print("The opponent is dead you won!!!")
             self.life = 0
 
-    def magical_potion(self):
+    def eat_spam(self):
         chance = random.randint(1, 4)
         if self.life == 0:
             if chance == 2:
@@ -52,6 +52,8 @@ class Warrior(Character):
         self.name = name
         self.shield = shield
         self.life = life
+        self.used = False
+
 
     def sword_swing(self, enemy:Character):
         """
@@ -62,11 +64,55 @@ class Warrior(Character):
         enemy.take_damage(power)
         print(f"You attacked with the sward swing ability, {enemy.name}")
 
+    def spam_trow(self, enemy:Character):
+        """An attack function, you trow a piece of old spam at the enemy and give him damage"""
+        power = 25
+        enemy.take_damage(power)
+        print(f"Spam attack succesfull enemy life: {enemy.life}")
+
+    def kill_them_al(self, enemy):
+        """Most powerfull attack function, when used it inflicts the most damage for the Warrior class
+        Can only be used once and only when playes' life is lower then 50"""
+        if not self.used:
+            if self.life <= 50:
+                damage = random.randint(60, 90)
+                enemy.take_damage(damage)
+                self.used = True
+                print(f"{enemy.name} attacked succesffuly damage done {damage}, {enemy.name} life is {enemy.life}")
+            else:
+                print("You can t use this ability yet...")
+        else:
+            print("You can only used this ability once...already used...try spam attack")
 
 
+class Wizard(Character):
 
+    def __init__(self, name, shield=50, life=100, mana=200):
+        super().__init__(name, shield, life)
+        self.name = name
+        self.shield = shield
+        self.life = life
+        self.name = mana
+        self.used = False
 
+    def magic_spam(self, enemy:Character):
+        damage = random.randint(30, 45)
+        enemy.take_damage(damage)
 
+    def wand_of_terror(self, enemy:Character):
+        damage = random.randint(40, 60)
+        enemy.take_damage(damage)
 
+    def thunder_rain(self, enemy:Character):
+        if not self.used:
+            if self.life <= 50:
+                damage = random.randint(60, 90)
+                enemy.take_damage(damage)
+                self.used = True
+                print(f"{enemy.name} attacked succesffuly damage done {damage}, {enemy.name} life is {enemy.life}")
+            else:
+                print("You can t use this ability yet...")
+        else:
+            print("You can only used this ability once...already used...try spam attack")
 
 
