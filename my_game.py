@@ -1,6 +1,8 @@
 import random
 
 # Creating the superClass that the other classes will inherit from:
+
+
 class Character:
 
     def __init__(self, name, shield=0, life=100):
@@ -15,7 +17,8 @@ class Character:
         :param damage: based on the attack chosen by the opponent damage my very
         :return: self.life and or self.shield after the attack
         """
-        if damage < self.life > 0:      #TODO solve issue if damage > 100
+
+        if damage < self.life > 0:      # TODO solve issue if damage > 100
             if self.shield:
                 if damage > self.shield:
                     damage_took = damage - self.shield
@@ -65,12 +68,11 @@ class Warrior(Character):
         print(f"You attacked with the sward swing ability, {enemy.name}")
 
     @staticmethod
-    def spam_trow(enemy:Character):
+    def spam_trow(enemy: Character):
         """An attack function, you trow a piece of old spam at the enemy and give him damage"""
         power = 25
         enemy.take_damage(power)
         print(f"Spam attack successful enemy life: {enemy.life}")
-
 
     def kill_them_all(self, enemy):
         """Most powerfull attack function, when used it inflicts the most damage for the Warrior class
@@ -104,12 +106,12 @@ class Wizard(Character):
         print(f"The magic spam worked. Enemy life: {enemy.life}")
 
     @staticmethod
-    def wand_of_terror(enemy:Character):
+    def wand_of_terror(enemy: Character):
         damage = random.randint(40, 60)
         enemy.take_damage(damage)
         print(f"The want of terror attacked enemy life: {enemy.life}")
 
-    def thunder_rain(self, enemy:Character):
+    def thunder_rain(self, enemy: Character):
         if not self.used:
             if self.life <= 50:
                 damage = random.randint(60, 90)
@@ -120,7 +122,6 @@ class Wizard(Character):
                 print("You can t use this ability yet...")
         else:
             print("You can only used this ability once...already used...try spam attack")
-
 
 
 def choose_character():
@@ -169,7 +170,6 @@ def choose_attack():
             player.wand_of_terror(opponent)
         elif attack == "3":
             player.thunder_rain(opponent)
-
 
 
 def main():
